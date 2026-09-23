@@ -2,12 +2,31 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>MODE SISWA - Remedial & Enrichment PSTS Bahasa Inggris Kelas X</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Extra mobile readability tweaks */
+        .text-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+        }
+        .text-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.4);
+            color: #fff;
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 800;
+        }
+    </style>
 </head>
 <body>
 
@@ -17,17 +36,12 @@
             <div class="brand-section">
                 <div class="brand-icon">🎓</div>
                 <div class="brand-title">
-                    <h1>MODE SISWA • PSTS BAHASA INGGRIS X</h1>
-                    <p>SMA PLUS PGRI CIBINONG — Remedial & Enrichment</p>
+                    <h1>MODE SISWA • PSTS X</h1>
+                    <p>SMA PLUS PGRI CIBINONG</p>
                 </div>
             </div>
 
             <div class="header-controls">
-                <div class="live-badge">
-                    <span class="live-dot"></span>
-                    <span>ONLINE REALTIME</span>
-                </div>
-
                 <!-- 1 HOUR COUNTDOWN TIMER -->
                 <div id="exam-timer" class="timer-container" title="Sisa Waktu Pengerjaan (1 Jam)">
                     ⏱️ <span id="timer-display">60:00</span>
@@ -39,13 +53,13 @@
     <div class="main-wrapper">
 
         <!-- STEP 1: REGISTRATION / IDENTITY FORM -->
-        <section id="step-register" class="card" style="max-width: 650px; margin: 2rem auto;">
+        <section id="step-register" class="card" style="max-width: 580px; margin: 1rem auto;">
             <div class="card-header">
-                <h2 class="card-title">📝 Identitas Peserta Ujian</h2>
+                <h2 class="card-title">📝 Masuk Ujian Siswa</h2>
                 <span class="badge-tag badge-easy">Durasi: 60 Menit</span>
             </div>
-            <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                Silakan lengkapi data diri Anda dengan benar sebelum memulai pengerjaan 25 Butir Soal dan 3 Pertanyaan Refleksi.
+            <p style="color: var(--slate-600); margin-bottom: 1.25rem; font-size: 0.9rem;">
+                Isi Nama dan pilih Kelas Anda untuk memulai 25 Soal PSTS dan 3 Refleksi Diri.
             </p>
 
             <form id="student-form" onsubmit="startExam(event)">
@@ -55,7 +69,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="student-class">Kelas *</label>
+                    <label class="form-label" for="student-class">Pilih Kelas *</label>
                     <select id="student-class" class="form-select" required>
                         <option value="" disabled selected>-- Pilih Kelas Anda --</option>
                         <option value="X INT 1">X INT 1</option>
@@ -74,19 +88,18 @@
 
                 <div class="form-group">
                     <label class="form-label" for="student-nis">Nomor Absen / NIS (Opsional)</label>
-                    <input type="text" id="student-nis" class="form-control" placeholder="Contoh: 18 / 242510098">
+                    <input type="text" id="student-nis" class="form-control" placeholder="Contoh: 18">
                 </div>
 
-                <div style="background: var(--primary-light); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem;">
-                    <h4 style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.35rem;">📌 Petunjuk Pengerjaan:</h4>
-                    <ul style="font-size: 0.85rem; color: var(--slate-700); padding-left: 1.25rem;">
-                        <li>Ujian terdiri dari <strong>25 Soal Pilihan Ganda (A–E)</strong> dan <strong>3 Pertanyaan Refleksi Diri</strong>.</li>
-                        <li>Waktu pengerjaan adalah <strong>1 Jam (60:00)</strong>. Timer akan berjalan otomatis.</li>
-                        <li>Jawaban akan tersimpan otomatis dan terkirim secara <strong>Realtime</strong> ke Mode Guru.</li>
-                    </ul>
+                <div style="background: #eff6ff; padding: 0.85rem; border-radius: 8px; margin-bottom: 1.25rem; border: 1px solid #bfdbfe;">
+                    <div style="font-weight: 700; color: #1e40af; font-size: 0.85rem; margin-bottom: 0.25rem;">📌 Info Ujian di HP:</div>
+                    <div style="font-size: 0.82rem; color: #334155; line-height: 1.5;">
+                        • 25 Soal Pilihan Ganda (A-E) + 3 Pertanyaan Refleksi.<br>
+                        • Tombol <strong>"📖 Buka Wacana"</strong> memudahkan membaca teks di layar HP tanpa scroll panjang.
+                    </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.9rem; font-size: 1.05rem;">
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.85rem; font-size: 1rem;">
                     🚀 Mulai Ujian & Timer (1 Jam)
                 </button>
             </form>
@@ -96,86 +109,89 @@
         <section id="step-exam" style="display: none;">
             
             <!-- Student Banner Info & Navigation Tabs -->
-            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--white); padding: 0.75rem 1.25rem; border-radius: var(--radius-md); margin-bottom: 1rem; border: 1px solid var(--slate-200); flex-wrap: wrap; gap: 0.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; background: var(--white); padding: 0.6rem 0.9rem; border-radius: var(--radius-md); margin-bottom: 0.75rem; border: 1px solid var(--slate-200); font-size: 0.85rem;">
                 <div>
-                    <span style="font-weight: 800; color: var(--primary);" id="display-student-name">Nama Siswa</span> • 
+                    <span style="font-weight: 800; color: var(--primary);" id="display-student-name">Nama</span> • 
                     <span class="badge-tag badge-easy" id="display-student-class">Kelas</span>
                 </div>
-                <div style="font-size: 0.88rem; font-weight: 700; color: var(--slate-600);">
-                    Status Progres: <span id="progress-indicator" style="color: var(--primary);">0 / 25 Soal (0%)</span>
+                <div style="font-weight: 700; color: var(--slate-600);">
+                    Progres: <span id="progress-indicator" style="color: var(--primary);">0/25 (0%)</span>
                 </div>
             </div>
 
             <!-- Tab Switcher -->
             <div class="tab-nav">
                 <button class="tab-btn active" id="tab-btn-questions" onclick="switchStudentTab('questions')">
-                    📝 QUESTIONS (25)
+                    📝 SOAL (25)
                     <span class="tab-badge" id="answered-count-badge">0/25</span>
                 </button>
                 <button class="tab-btn" id="tab-btn-reflections" onclick="switchStudentTab('reflections')">
-                    💭 REFLECTIONS (3 QUESTIONS)
+                    💭 REFLEKSI (3)
                     <span class="tab-badge" id="reflections-count-badge">0/3</span>
                 </button>
             </div>
 
-            <!-- TAB 1: QUESTIONS WORKSPACE (SPLIT VIEW) -->
+            <!-- TAB 1: QUESTIONS WORKSPACE -->
             <div id="student-tab-questions" class="tab-content active">
+
+                <!-- Mobile Passage Toggle Button (Visible on phones) -->
+                <div class="mobile-passage-toggle" id="mobile-passage-toggle" onclick="toggleMobilePassage()">
+                    <span>📖 <span id="mobile-passage-btn-text">Buka Wacana Bacaan</span></span>
+                    <span id="mobile-passage-icon">▼</span>
+                </div>
+
                 <div class="exam-layout">
                     
-                    <!-- Left: Reading Passage -->
-                    <div class="passage-card">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                    <!-- Reading Passage Card -->
+                    <div class="passage-card" id="passage-card-element">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
                             <span class="passage-category" id="passage-category-tag">Descriptive Text</span>
-                            <span style="font-size: 0.8rem; font-weight: 600; color: var(--slate-400);" id="passage-rel-tag">Text Reference</span>
+                            <span style="font-size: 0.75rem; font-weight: 600; color: var(--slate-400);" id="passage-rel-tag">Text Reference</span>
                         </div>
                         <h2 class="passage-title" id="passage-title">Judul Teks</h2>
                         <div class="passage-body" id="passage-body">
-                            <!-- Dynamic passage text will be injected here -->
+                            <!-- Injected passage -->
                         </div>
                     </div>
 
-                    <!-- Middle: Question & Options -->
+                    <!-- Question & Options Card -->
                     <div class="question-container">
                         <div class="q-header">
-                            <span class="q-badge" id="q-number-badge">Question #1 of 25</span>
+                            <span class="q-badge" id="q-number-badge">Soal #1 dari 25</span>
                             <span class="skill-tag" id="q-skill-badge">Skill</span>
                         </div>
 
                         <div class="q-text" id="q-text-content">
-                            <!-- Question statement -->
+                            <!-- Question text -->
                         </div>
 
                         <div class="options-list" id="options-container">
-                            <!-- Option A - E items -->
+                            <!-- Options A-E -->
                         </div>
 
-                        <!-- Prev / Next Navigation -->
-                        <div class="q-nav-buttons">
+                        <!-- Desktop Question Nav Buttons -->
+                        <div class="q-nav-buttons" style="margin-top: 1.25rem;">
                             <button class="btn btn-secondary" id="btn-prev-q" onclick="navigateQuestion(-1)">
-                                ⬅️ Soal Sebelumnya
+                                ⬅️ Sebelumnya
                             </button>
                             <button class="btn btn-primary" id="btn-next-q" onclick="navigateQuestion(1)">
-                                Soal Berikutnya ➡️
+                                Berikutnya ➡️
                             </button>
                         </div>
                     </div>
 
-                    <!-- Right: Question Palette -->
+                    <!-- Desktop Question Palette -->
                     <div class="palette-column">
                         <div class="palette-card">
-                            <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.25rem;">
+                            <h3 style="font-size: 0.9rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.2rem;">
                                 🧭 Nomor Soal (1–25)
                             </h3>
-                            <p style="font-size: 0.78rem; color: var(--slate-500);">Klik nomor untuk langsung lompat ke soal:</p>
-                            
-                            <div class="palette-grid" id="palette-grid">
-                                <!-- 25 buttons dynamically generated -->
+                            <div class="palette-grid" id="palette-grid-desktop">
+                                <!-- 25 buttons -->
                             </div>
-
-                            <hr style="border: none; border-top: 1px solid var(--slate-200); margin: 1.25rem 0;">
-
+                            <hr style="border: none; border-top: 1px solid var(--slate-200); margin: 1rem 0;">
                             <button class="btn btn-success" style="width: 100%;" onclick="switchStudentTab('reflections')">
-                                Lanjut ke Refleksi ➡️
+                                Ke Refleksi (3) ➡️
                             </button>
                         </div>
                     </div>
@@ -185,80 +201,81 @@
 
             <!-- TAB 2: REFLECTIONS WORKSPACE -->
             <div id="student-tab-reflections" class="tab-content">
-                <div class="card" style="max-width: 900px; margin: 0 auto;">
+                <div class="card" style="max-width: 800px; margin: 0 auto;">
                     <div class="card-header">
-                        <h2 class="card-title">💭 Refleksi Diri Pembelajaran (3 Questions)</h2>
+                        <h2 class="card-title">💭 3 Pertanyaan Refleksi Diri</h2>
                         <span class="badge-tag badge-medium">Wajib Diisi</span>
                     </div>
-                    <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                        Tuliskan jawaban refleksi Anda secara jujur dan mendalam untuk mengevaluasi pemahaman materi serta inspirasi yang didapatkan.
+                    <p style="color: var(--slate-600); margin-bottom: 1.25rem; font-size: 0.88rem;">
+                        Tuliskan tanggapan Anda secara jujur dan jelas pada kolom berikut:
                     </p>
 
                     <div id="reflections-form-container">
-                        <!-- 3 Reflection Prompts will be dynamically generated -->
+                        <!-- 3 Prompts -->
                     </div>
 
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; flex-wrap: wrap; gap: 1rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; flex-wrap: wrap; gap: 0.75rem;">
                         <button class="btn btn-secondary" onclick="switchStudentTab('questions')">
-                            ⬅️ Kembali ke Soal (25)
+                            ⬅️ Kembali ke Soal
                         </button>
-                        <button class="btn btn-success" style="padding: 0.9rem 2rem; font-size: 1.05rem;" onclick="openSubmitConfirmModal()">
-                            ✅ Selesai & Kirim Jawaban
+                        <button class="btn btn-success" style="padding: 0.85rem 1.75rem; font-size: 1rem;" onclick="openSubmitConfirmModal()">
+                            ✅ Selesai & Kirim Ujian
                         </button>
                     </div>
                 </div>
+            </div>
+
+            <!-- MOBILE FIXED BOTTOM NAVIGATION BAR -->
+            <div class="mobile-bottom-bar" id="mobile-bottom-bar">
+                <button class="btn btn-secondary" style="padding: 0.55rem 0.9rem; font-size: 0.85rem;" onclick="navigateQuestion(-1)">
+                    ⬅️ Prev
+                </button>
+                <button class="btn btn-outline" style="padding: 0.55rem 0.9rem; font-size: 0.85rem; font-weight: 800; border-color: var(--primary); color: var(--primary);" onclick="openMobilePaletteModal()">
+                    🧭 <span id="mobile-q-indicator">No. 1/25</span> ☰
+                </button>
+                <button class="btn btn-primary" style="padding: 0.55rem 0.9rem; font-size: 0.85rem;" id="btn-mobile-next" onclick="navigateQuestion(1)">
+                    Next ➡️
+                </button>
             </div>
 
         </section>
 
         <!-- STEP 3: SCORECARD / SUBMISSION COMPLETE -->
-        <section id="step-result" style="display: none; max-width: 800px; margin: 2rem auto;">
+        <section id="step-result" style="display: none; max-width: 650px; margin: 1.5rem auto;">
             <div class="score-banner">
-                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎉</div>
-                <h1 style="font-size: 1.8rem; font-weight: 800;">Ujian Remedial & Enrichment Selesai!</h1>
-                <p style="opacity: 0.9; font-size: 0.95rem;">Jawaban Anda telah berhasil tersimpan dan terintegrasi ke <strong>Mode Guru</strong> secara Realtime.</p>
+                <div style="font-size: 2.2rem; margin-bottom: 0.35rem;">🎉</div>
+                <h1 style="font-size: 1.5rem; font-weight: 800;">Ujian Berhasil Terkirim!</h1>
+                <p style="opacity: 0.9; font-size: 0.88rem;">Jawaban Anda telah tersimpan dan terintegrasi secara <strong>Realtime</strong> ke Mode Guru.</p>
 
                 <div class="score-circle">
                     <span class="score-num" id="res-score-val">0</span>
-                    <span class="score-label">Nilai Akhir (0-100)</span>
+                    <span class="score-label">Skor (0-100)</span>
                 </div>
 
-                <div style="font-size: 1.1rem; font-weight: 700;" id="res-correct-count">
+                <div style="font-size: 1rem; font-weight: 700;" id="res-correct-count">
                     Benar: 0 / 25 Soal
                 </div>
             </div>
 
             <div class="card">
-                <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; color: var(--slate-800);">
-                    📋 Rangkuman Hasil Pengerjaan
+                <h3 style="font-size: 1rem; font-weight: 700; margin-bottom: 0.75rem; color: var(--slate-800);">
+                    📋 Bukti Pengiriman Ujian
                 </h3>
-                <table class="data-table" style="margin-bottom: 1.5rem;">
+                <table class="data-table" style="margin-bottom: 1.25rem;">
                     <tbody>
-                        <tr>
-                            <td style="font-weight: 700; width: 200px;">Nama Siswa</td>
-                            <td id="res-name">-</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 700;">Kelas</td>
-                            <td id="res-class">-</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 700;">Waktu Pengerjaan</td>
-                            <td id="res-time">-</td>
-                        </tr>
-                        <tr>
-                            <td style="font-weight: 700;">Status Sinkronisasi</td>
-                            <td><span class="badge-tag badge-easy">✅ Terkirim ke Cloud Guru</span></td>
-                        </tr>
+                        <tr><td style="font-weight:700;">Nama Siswa</td><td id="res-name">-</td></tr>
+                        <tr><td style="font-weight:700;">Kelas</td><td id="res-class">-</td></tr>
+                        <tr><td style="font-weight:700;">Waktu Pengerjaan</td><td id="res-time">-</td></tr>
+                        <tr><td style="font-weight:700;">Status</td><td><span class="badge-tag badge-easy">✅ Terkirim ke Cloud Guru</span></td></tr>
                     </tbody>
                 </table>
 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
                     <button class="btn btn-primary" onclick="window.print()">
-                        🖨️ Cetak / Simpan Bukti Nilai (PDF)
+                        🖨️ Cetak / Simpan PDF
                     </button>
                     <a href="index.html" class="btn btn-outline">
-                        🏠 Kembali ke Halaman Utama
+                        🏠 Halaman Utama
                     </a>
                 </div>
             </div>
@@ -266,20 +283,40 @@
 
     </div>
 
+    <!-- MODAL MOBILE PALETTE (BOTTOM SHEET) -->
+    <div id="modal-mobile-palette" class="modal-backdrop">
+        <div class="modal-content" style="max-width: 450px;">
+            <button class="modal-close" onclick="closeMobilePaletteModal()">&times;</button>
+            <h3 style="font-size: 1.1rem; font-weight: 800; color: var(--slate-800); margin-bottom: 0.35rem;">
+                🧭 Daftar Nomor Soal (1–25)
+            </h3>
+            <p style="font-size: 0.8rem; color: var(--slate-500); margin-bottom: 1rem;">
+                Ketuk nomor soal untuk langsung menuju ke soal tersebut:
+            </p>
+            <div class="palette-grid" id="palette-grid-mobile">
+                <!-- Mobile 25 buttons -->
+            </div>
+            <hr style="border: none; border-top: 1px solid var(--slate-200); margin: 1.25rem 0 1rem;">
+            <button class="btn btn-success" style="width: 100%;" onclick="closeMobilePaletteModal(); switchStudentTab('reflections');">
+                Ke Lembar Refleksi (3 Soal) ➡️
+            </button>
+        </div>
+    </div>
+
     <!-- MODAL CONFIRM SUBMIT -->
     <div id="modal-confirm" class="modal-backdrop">
-        <div class="modal-content" style="max-width: 500px;">
+        <div class="modal-content" style="max-width: 460px;">
             <button class="modal-close" onclick="closeSubmitConfirmModal()">&times;</button>
-            <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--slate-800); margin-bottom: 0.75rem;">
-                ⚠️ Konfirmasi Pengiriman Ujian
+            <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--slate-800); margin-bottom: 0.5rem;">
+                ⚠️ Konfirmasi Kirim Jawaban
             </h3>
-            <p style="font-size: 0.92rem; color: var(--slate-600); margin-bottom: 1.25rem;">
-                Apakah Anda yakin ingin mengirimkan seluruh jawaban sekarang?
+            <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 1rem;">
+                Apakah Anda yakin ingin menyelesaikan ujian dan mengirim nilai ke Guru?
             </p>
-            <div id="modal-check-summary" style="background: var(--slate-100); padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.5rem; font-size: 0.88rem;">
-                <!-- Summary items answered -->
+            <div id="modal-check-summary" style="background: var(--slate-100); padding: 0.85rem; border-radius: 8px; margin-bottom: 1.25rem; font-size: 0.85rem;">
+                <!-- Summary items -->
             </div>
-            <div style="display: flex; justify-content: flex-end; gap: 0.75rem;">
+            <div style="display: flex; justify-content: flex-end; gap: 0.5rem;">
                 <button class="btn btn-secondary" onclick="closeSubmitConfirmModal()">Periksa Lagi</button>
                 <button class="btn btn-success" id="btn-final-submit" onclick="executeSubmitExam()">Ya, Kirim Sekarang</button>
             </div>
@@ -290,20 +327,15 @@
     <script src="data.js"></script>
     <script src="sync.js"></script>
     <script>
-        // State variables
-        let currentStudent = {
-            name: "",
-            studentClass: "",
-            studentId: ""
-        };
-        let studentAnswers = {}; // { 1: "B", 2: "C", ... }
+        let currentStudent = { name: "", studentClass: "", studentId: "" };
+        let studentAnswers = {};
         let studentReflections = { ref1: "", ref2: "", ref3: "" };
-        let currentQIndex = 0; // 0 to 24
+        let currentQIndex = 0;
         let timerInterval = null;
-        let remainingSeconds = SYNC_CONFIG.EXAM_DURATION_SECONDS; // 3600s
+        let remainingSeconds = SYNC_CONFIG.EXAM_DURATION_SECONDS;
         let timeSpentSeconds = 0;
+        let isMobilePassageOpen = true;
 
-        // Start exam
         function startExam(e) {
             e.preventDefault();
             const name = document.getElementById('student-name').value.trim();
@@ -323,15 +355,13 @@
             document.getElementById('step-register').style.display = 'none';
             document.getElementById('step-exam').style.display = 'block';
 
-            renderPalette();
+            renderPalettes();
             renderQuestion(0);
             renderReflectionsForm();
             startTimer();
         }
 
-        // 1-Hour Timer System
         function startTimer() {
-            // Check if existing timer in storage
             const savedTimer = localStorage.getItem(SYNC_CONFIG.TIMER_KEY);
             if (savedTimer) {
                 const parsed = parseInt(savedTimer, 10);
@@ -366,9 +396,9 @@
             if (displayEl) displayEl.innerText = formatted;
 
             if (timerBox) {
-                if (remainingSeconds <= 300) { // < 5 mins
+                if (remainingSeconds <= 300) {
                     timerBox.className = 'timer-container danger';
-                } else if (remainingSeconds <= 900) { // < 15 mins
+                } else if (remainingSeconds <= 900) {
                     timerBox.className = 'timer-container warning';
                 } else {
                     timerBox.className = 'timer-container';
@@ -376,64 +406,89 @@
             }
         }
 
-        // Tab Navigation
         function switchStudentTab(tab) {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
 
+            const bottomBar = document.getElementById('mobile-bottom-bar');
+
             if (tab === 'questions') {
                 document.getElementById('tab-btn-questions').classList.add('active');
                 document.getElementById('student-tab-questions').classList.add('active');
+                if (bottomBar) bottomBar.style.display = 'flex';
             } else {
                 document.getElementById('tab-btn-reflections').classList.add('active');
                 document.getElementById('student-tab-reflections').classList.add('active');
+                if (bottomBar) bottomBar.style.display = 'none';
             }
         }
 
-        // Render Palette
-        function renderPalette() {
-            const grid = document.getElementById('palette-grid');
-            grid.innerHTML = '';
-            QUESTIONS_DATA.forEach((q, idx) => {
-                const btn = document.createElement('button');
-                btn.className = `pal-btn ${studentAnswers[q.id] ? 'answered' : ''} ${idx === currentQIndex ? 'current' : ''}`;
-                btn.id = `pal-btn-${q.id}`;
-                btn.innerText = q.id;
-                btn.onclick = () => renderQuestion(idx);
-                grid.appendChild(btn);
+        // Toggle Mobile Passage Accordion
+        function toggleMobilePassage() {
+            const passCard = document.getElementById('passage-card-element');
+            const icon = document.getElementById('mobile-passage-icon');
+            isMobilePassageOpen = !isMobilePassageOpen;
+
+            if (isMobilePassageOpen) {
+                passCard.classList.remove('collapsed-mobile');
+                icon.innerText = "▲";
+                document.getElementById('mobile-passage-btn-text').innerText = "Tutup Wacana Bacaan";
+            } else {
+                passCard.classList.add('collapsed-mobile');
+                icon.innerText = "▼";
+                document.getElementById('mobile-passage-btn-text').innerText = "Buka Wacana Bacaan";
+            }
+        }
+
+        function renderPalettes() {
+            ['palette-grid-desktop', 'palette-grid-mobile'].forEach(gridId => {
+                const grid = document.getElementById(gridId);
+                if (!grid) return;
+                grid.innerHTML = '';
+                QUESTIONS_DATA.forEach((q, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = `pal-btn ${studentAnswers[q.id] ? 'answered' : ''} ${idx === currentQIndex ? 'current' : ''}`;
+                    btn.id = `${gridId}-btn-${q.id}`;
+                    btn.innerText = q.id;
+                    btn.onclick = () => {
+                        renderQuestion(idx);
+                        closeMobilePaletteModal();
+                    };
+                    grid.appendChild(btn);
+                });
             });
             updateProgressStats();
         }
 
-        // Render Single Question
         function renderQuestion(index) {
             currentQIndex = index;
             const q = QUESTIONS_DATA[index];
 
-            // Update badge & tags
-            document.getElementById('q-number-badge').innerText = `Question #${q.id} of 25`;
+            document.getElementById('q-number-badge').innerText = `Soal #${q.id} dari 25`;
             document.getElementById('q-skill-badge').innerText = `${q.level} • ${q.skill}`;
             document.getElementById('q-text-content').innerText = q.question;
+            document.getElementById('mobile-q-indicator').innerText = `No. ${q.id}/25`;
 
-            // Update Passage
-            const passCard = document.querySelector('.passage-card');
+            const passCard = document.getElementById('passage-card-element');
+            const toggleBar = document.getElementById('mobile-passage-toggle');
+
             if (q.passageId && PASSAGES[q.passageId]) {
                 const p = PASSAGES[q.passageId];
                 document.getElementById('passage-category-tag').innerText = p.category;
                 document.getElementById('passage-title').innerText = p.title;
-                document.getElementById('passage-rel-tag').innerText = `Relevant for Q#${q.id}`;
+                document.getElementById('passage-rel-tag').innerText = `Rujukan Soal #${q.id}`;
                 
                 const paragraphs = p.content.split('\n\n').map(par => `<p>${par.replace(/\n/g, '<br>')}</p>`).join('');
                 document.getElementById('passage-body').innerHTML = paragraphs;
+                
                 passCard.style.display = 'block';
+                toggleBar.style.display = 'flex';
+                document.getElementById('mobile-passage-btn-text').innerText = `Wacana: ${p.title}`;
             } else {
-                document.getElementById('passage-category-tag').innerText = "Grammar & Dialogue in Context";
-                document.getElementById('passage-title').innerText = "Dialogue / Sentence Completion";
-                document.getElementById('passage-rel-tag').innerText = `Stand-Alone Question #${q.id}`;
-                document.getElementById('passage-body').innerHTML = `<p style="color: var(--slate-600); font-style: italic;">Soal ini tidak memerlukan teks bacaan panjang. Perhatikan konteks kalimat dan pilihan kata dengan seksama.</p>`;
+                passCard.style.display = 'none';
+                toggleBar.style.display = 'none';
             }
 
-            // Update Options
             const optContainer = document.getElementById('options-container');
             optContainer.innerHTML = '';
 
@@ -452,28 +507,33 @@
                 }
             });
 
-            // Update Nav buttons
             document.getElementById('btn-prev-q').disabled = index === 0;
-            document.getElementById('btn-next-q').innerText = index === QUESTIONS_DATA.length - 1 ? "Ke Refleksi ➡️" : "Soal Berikutnya ➡️";
+            const nextLabel = index === QUESTIONS_DATA.length - 1 ? "Ke Refleksi (3) ➡️" : "Berikutnya ➡️";
+            document.getElementById('btn-next-q').innerText = nextLabel;
+            document.getElementById('btn-mobile-next').innerText = index === QUESTIONS_DATA.length - 1 ? "Refleksi ➡️" : "Next ➡️";
 
-            // Update Palette Active State
-            document.querySelectorAll('.pal-btn').forEach((btn, idx) => {
-                btn.classList.toggle('current', idx === index);
+            // Update Palette Active States
+            document.querySelectorAll('.pal-btn').forEach((btn) => {
+                const qNum = parseInt(btn.innerText, 10);
+                btn.classList.toggle('current', qNum === (index + 1));
             });
+
+            // Auto scroll to top of question for mobile comfort
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function selectOption(qId, optKey) {
             studentAnswers[qId] = optKey;
             
-            // Re-render options
             const currentQ = QUESTIONS_DATA[currentQIndex];
             if (currentQ.id === qId) {
                 renderQuestion(currentQIndex);
             }
 
-            // Update palette button
-            const palBtn = document.getElementById(`pal-btn-${qId}`);
-            if (palBtn) palBtn.classList.add('answered');
+            ['palette-grid-desktop', 'palette-grid-mobile'].forEach(gridId => {
+                const palBtn = document.getElementById(`${gridId}-btn-${qId}`);
+                if (palBtn) palBtn.classList.add('answered');
+            });
 
             updateProgressStats();
         }
@@ -487,21 +547,28 @@
             }
         }
 
+        function openMobilePaletteModal() {
+            document.getElementById('modal-mobile-palette').classList.add('open');
+        }
+
+        function closeMobilePaletteModal() {
+            document.getElementById('modal-mobile-palette').classList.remove('open');
+        }
+
         function updateProgressStats() {
             const answeredCount = Object.keys(studentAnswers).length;
             const pct = Math.round((answeredCount / 25) * 100);
             
             document.getElementById('answered-count-badge').innerText = `${answeredCount}/25`;
-            document.getElementById('progress-indicator').innerText = `${answeredCount} / 25 Soal (${pct}%)`;
+            document.getElementById('progress-indicator').innerText = `${answeredCount}/25 (${pct}%)`;
 
             let filledRef = 0;
-            if (studentReflections.ref1 && studentReflections.ref1.trim().length > 5) filledRef++;
-            if (studentReflections.ref2 && studentReflections.ref2.trim().length > 5) filledRef++;
-            if (studentReflections.ref3 && studentReflections.ref3.trim().length > 5) filledRef++;
+            if (studentReflections.ref1 && studentReflections.ref1.trim().length > 3) filledRef++;
+            if (studentReflections.ref2 && studentReflections.ref2.trim().length > 3) filledRef++;
+            if (studentReflections.ref3 && studentReflections.ref3.trim().length > 3) filledRef++;
             document.getElementById('reflections-count-badge').innerText = `${filledRef}/3`;
         }
 
-        // Render Reflections Form
         function renderReflectionsForm() {
             const container = document.getElementById('reflections-form-container');
             container.innerHTML = '';
@@ -510,7 +577,7 @@
                 const box = document.createElement('div');
                 box.className = 'reflection-box';
                 box.innerHTML = `
-                    <div class="ref-title">Pertanyaan Refleksi ${idx + 1}: ${ref.title}</div>
+                    <div class="ref-title">Refleksi ${idx + 1}: ${ref.title}</div>
                     <div class="ref-q">${ref.question}</div>
                     <textarea class="ref-textarea" id="input-${ref.id}" placeholder="${ref.placeholder}" oninput="saveReflection('${ref.id}', this.value)">${studentReflections[ref.id] || ''}</textarea>
                 `;
@@ -523,7 +590,6 @@
             updateProgressStats();
         }
 
-        // Submission Modal
         function openSubmitConfirmModal() {
             const answeredCount = Object.keys(studentAnswers).length;
             const missingQ = 25 - answeredCount;
@@ -533,7 +599,7 @@
             if (studentReflections.ref3 && studentReflections.ref3.trim()) refCount++;
 
             let summaryHtml = `
-                <div>• Soal Terjawab: <strong>${answeredCount} / 25</strong> ${missingQ > 0 ? `<span style="color:var(--danger); font-weight:700;">(${missingQ} soal belum dijawab!)</span>` : '✅'}</div>
+                <div>• Soal Terjawab: <strong>${answeredCount} / 25</strong> ${missingQ > 0 ? `<span style="color:var(--danger); font-weight:700;">(${missingQ} belum dijawab!)</span>` : '✅'}</div>
                 <div style="margin-top:0.35rem;">• Refleksi Terisi: <strong>${refCount} / 3</strong></div>
             `;
 
@@ -550,7 +616,6 @@
             clearInterval(timerInterval);
             localStorage.removeItem(SYNC_CONFIG.TIMER_KEY);
 
-            // Calculate Score
             let correctCount = 0;
             const itemResults = {};
 
@@ -566,7 +631,6 @@
             const secondsUsed = timeSpentSeconds % 60;
             const timeSpentStr = `${minutesUsed}m ${secondsUsed}s`;
 
-            // Prepare record
             const submission = {
                 name: currentStudent.name,
                 studentClass: currentStudent.studentClass,
@@ -580,12 +644,12 @@
                 timeSpent: timeSpentStr
             };
 
-            // Submit to Realtime Sync Engine (Local + Cloud + BroadcastChannel)
             await syncEngine.submitExam(submission);
 
-            // Show Step 3 Scorecard
             document.getElementById('step-exam').style.display = 'none';
             document.getElementById('step-result').style.display = 'block';
+            const bottomBar = document.getElementById('mobile-bottom-bar');
+            if (bottomBar) bottomBar.style.display = 'none';
 
             document.getElementById('res-score-val').innerText = score;
             document.getElementById('res-correct-count').innerText = `Benar: ${correctCount} / 25 Soal (${score}%)`;
