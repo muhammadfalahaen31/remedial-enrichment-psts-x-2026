@@ -46,256 +46,284 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="app-header">
-        <div class="header-container">
-            <div class="brand-section">
-                <div class="brand-icon">👨‍🏫</div>
-                <div class="brand-title">
-                    <h1>MODE GURU • DASHBOARD DIAGNOSTIK PSTS X</h1>
-                    <p>SMA PLUS PGRI CIBINONG — Remedial & Enrichment Realtime Monitor</p>
-                </div>
-            </div>
+    <!-- PIN SECURITY GATE SCREEN -->
+    <div id="pin-security-overlay" class="pin-lock-overlay">
+        <div class="pin-card">
+            <div class="pin-icon">🔐</div>
+            <h2 style="font-size: 1.25rem; font-weight: 800; color: #0f172a; margin-bottom: 0.25rem;">
+                Akses Mode Guru
+            </h2>
+            <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">
+                Masukkan PIN Keamanan Guru untuk membuka Bank Soal & Dashboard Diagnostik:
+            </p>
 
-            <div class="header-controls">
-                <div class="live-badge" title="Tersambung ke Cloud Realtime Database">
-                    <span class="live-dot"></span>
-                    <span id="live-status-text">REALTIME LIVE</span>
-                </div>
-                <a href="index.html" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4); padding: 0.4rem 0.8rem; font-size: 0.82rem;">
-                    Portal Mode
+            <form onsubmit="verifyTeacherPIN(event)">
+                <input type="password" id="input-teacher-pin" class="pin-input" maxlength="10" placeholder="••••••" autofocus required>
+                <div id="pin-error-msg" style="color: #ef4444; font-size: 0.82rem; font-weight: 700; min-height: 20px; margin-bottom: 0.75rem;"></div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; padding: 0.75rem; font-size: 0.95rem; margin-bottom: 0.5rem;">
+                    🔓 Masuk Dashboard
+                </button>
+                <a href="index.html" class="btn btn-outline" style="width: 100%; padding: 0.6rem; font-size: 0.85rem;">
+                    Kembali ke Beranda
                 </a>
-            </div>
+            </form>
         </div>
-    </header>
+    </div>
 
-    <div class="main-wrapper">
+    <!-- MAIN TEACHER CONTENT (HIDDEN UNTIL UNLOCKED) -->
+    <div id="teacher-main-app" style="display: none;">
 
-        <!-- 3 MAIN TABS FOR TEACHER -->
-        <div class="tab-nav">
-            <button class="tab-btn active" id="tab-teacher-btn-q" onclick="switchTeacherTab('questions')">
-                📋 QUESTIONS (25)
-                <span class="tab-badge">25 Butir</span>
-            </button>
-            <button class="tab-btn" id="tab-teacher-btn-ref" onclick="switchTeacherTab('reflections')">
-                💭 REFLECTIONS (3 QUESTIONS)
-                <span class="tab-badge" id="teacher-ref-badge">Respon Siswa</span>
-            </button>
-            <button class="tab-btn" id="tab-teacher-btn-res" onclick="switchTeacherTab('results')">
-                📊 RESULT / ANALYSIS
-                <span class="tab-badge" id="teacher-sub-count-badge">0 Data</span>
-            </button>
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-container">
+                <div class="brand-section">
+                    <div class="brand-icon">👨‍🏫</div>
+                    <div class="brand-title">
+                        <h1>MODE GURU • DASHBOARD DIAGNOSTIK PSTS X</h1>
+                        <p>SMA PLUS PGRI CIBINONG — Remedial & Enrichment Realtime Monitor</p>
+                    </div>
+                </div>
+
+                <div class="header-controls">
+                    <div class="live-badge" title="Tersambung ke Cloud Realtime Database">
+                        <span class="live-dot"></span>
+                        <span id="live-status-text">REALTIME LIVE</span>
+                    </div>
+                    <button onclick="lockTeacherMode()" class="btn btn-outline" style="color: #fff; border-color: rgba(255,255,255,0.4); padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+                        🔒 Kunci
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-wrapper">
+
+            <!-- 3 MAIN TABS FOR TEACHER -->
+            <div class="tab-nav">
+                <button class="tab-btn active" id="tab-teacher-btn-q" onclick="switchTeacherTab('questions')">
+                    📋 QUESTIONS (25)
+                    <span class="tab-badge">25 Butir</span>
+                </button>
+                <button class="tab-btn" id="tab-teacher-btn-ref" onclick="switchTeacherTab('reflections')">
+                    💭 REFLECTIONS (3 QUESTIONS)
+                    <span class="tab-badge" id="teacher-ref-badge">Respon Siswa</span>
+                </button>
+                <button class="tab-btn" id="tab-teacher-btn-res" onclick="switchTeacherTab('results')">
+                    📊 RESULT / ANALYSIS
+                    <span class="tab-badge" id="teacher-sub-count-badge">0 Data</span>
+                </button>
+            </div>
+
+            <!-- ==========================================
+                 TAB 1: QUESTIONS (25)
+                 ========================================== -->
+            <section id="tab-teacher-questions" class="tab-content active">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📚 Bank 25 Butir Soal PSTS Bahasa Inggris Kelas X</h2>
+                        <span class="badge-tag badge-easy">Lengkap Kunci Jawaban & Pembahasan</span>
+                    </div>
+                    <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.92rem;">
+                        Berikut adalah daftar lengkap 25 butir soal pilihan ganda (LOTS, MOTS, HOTS) berdasarkan materi teks deskriptif atlet (Susi Susanti, Jonatan Christie, Michael Jordan, Mohamed Salah) serta tata bahasa Simple Present Tense dan Adverbs.
+                    </p>
+
+                    <div id="teacher-questions-list">
+                        <!-- Dynamic rendering of 25 questions with keys and explanations -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 TAB 2: REFLECTIONS (3 QUESTIONS)
+                 ========================================== -->
+            <section id="tab-teacher-reflections" class="tab-content">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">💭 3 Pertanyaan Refleksi Siswa</h2>
+                    </div>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+                        <div class="reflection-box" style="margin-bottom:0;">
+                            <div class="ref-title">Refleksi 1: Pemahaman Materi & Kosakata</div>
+                            <div class="ref-q">Sejauh mana siswa memahami teks deskriptif atlet berprestasi serta kosakata dan tata bahasa (Simple Present & Adverb)?</div>
+                        </div>
+                        <div class="reflection-box" style="margin-bottom:0;">
+                            <div class="ref-title">Refleksi 2: Kendala Belajar & Strategi HOTS</div>
+                            <div class="ref-q">Bagian mana dari soal atau bacaan yang paling menantang (ide pokok, inferensi, sinonim, grammar) dan bagaimana solusinya?</div>
+                        </div>
+                        <div class="reflection-box" style="margin-bottom:0;">
+                            <div class="ref-title">Refleksi 3: Inspirasi Karakter & Motivasi</div>
+                            <div class="ref-q">Nilai karakter positif apa (disiplin, determinasi/grit, sportivitas, charity) yang paling menginspirasi siswa?</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📝 Rekap Respon Refleksi Siswa (Real-Time Feed)</h2>
+                        <div style="display: flex; gap: 0.5rem; align-items: center;">
+                            <select id="filter-ref-class" class="form-select" style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.88rem;" onchange="renderReflectionsFeed()">
+                                <option value="ALL">Semua Kelas (11 Kelas)</option>
+                                <option value="X INT 1">X INT 1</option>
+                                <option value="X INT 2">X INT 2</option>
+                                <option value="X INT 3">X INT 3</option>
+                                <option value="X INT 4">X INT 4</option>
+                                <option value="X REGULER 1">X REGULER 1</option>
+                                <option value="X REGULER 2">X REGULER 2</option>
+                                <option value="X REGULER 3">X REGULER 3</option>
+                                <option value="X REGULER 4">X REGULER 4</option>
+                                <option value="X REGULER 5">X REGULER 5</option>
+                                <option value="X REGULER 6">X REGULER 6</option>
+                                <option value="X REGULER 7">X REGULER 7</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="reflections-feed-container">
+                        <!-- Reflection cards per student -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ==========================================
+                 TAB 3: RESULT / ANALYSIS
+                 ========================================== -->
+            <section id="tab-teacher-results" class="tab-content">
+
+                <!-- Summary Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon stat-blue">👥</div>
+                        <div>
+                            <div class="stat-val" id="stat-total-students">0</div>
+                            <div class="stat-label">Total Siswa Masuk</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-green">🎯</div>
+                        <div>
+                            <div class="stat-val" id="stat-class-avg">0</div>
+                            <div class="stat-label">Rata-Rata Nilai</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-purple">🏆</div>
+                        <div>
+                            <div class="stat-val" id="stat-highest-score">0</div>
+                            <div class="stat-label">Nilai Tertinggi</div>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon stat-amber">📉</div>
+                        <div>
+                            <div class="stat-val" id="stat-lowest-score">0</div>
+                            <div class="stat-label">Nilai Terendah</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEM ANALYSIS MATRIX (ANALISIS BUTIR SOAL 1-25) -->
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <h2 class="card-title">📊 Analisis Butir Soal (Item-by-Item Analysis 1–25)</h2>
+                            <p style="font-size: 0.85rem; color: var(--slate-500); margin-top: 0.2rem;">
+                                Monitoring persentase jawaban benar/salah siswa per nomor soal untuk menentukan materi remedial teaching.
+                            </p>
+                        </div>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="exportItemAnalysisCSV()">
+                                📥 Ekspor Analisis Butir Soal (CSV)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="item-table-wrapper">
+                        <table class="data-table" id="table-item-analysis">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px; text-align: center;">No</th>
+                                    <th>Indikator Kompetensi / Skill</th>
+                                    <th style="width: 80px; text-align: center;">Level</th>
+                                    <th style="width: 65px; text-align: center;">Kunci</th>
+                                    <th style="width: 85px; text-align: center;">Benar (✓)</th>
+                                    <th style="width: 85px; text-align: center;">Salah (✗)</th>
+                                    <th style="width: 100px; text-align: center;">% Tuntas</th>
+                                    <th class="bar-cell">Distribusi Ketuntasan</th>
+                                    <th style="width: 90px; text-align: center;">Kategori</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-item-analysis">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- STUDENT ROSTER -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">📋 Rekapitulasi Nilai Siswa (Student Roster)</h2>
+                        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button class="btn btn-success" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="exportScoresCSV()">
+                                📥 Ekspor Rekap Nilai (CSV)
+                            </button>
+                            <button class="btn btn-outline" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;" onclick="refreshDashboardData()">
+                                🔄 Refresh
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Filter & Search Bar -->
+                    <div class="filter-bar">
+                        <div style="flex: 1; min-width: 200px;">
+                            <label class="form-label" style="font-size: 0.8rem; margin-bottom: 0.2rem;">Filter Kelas:</label>
+                            <select id="filter-class" class="form-select" style="padding: 0.45rem 0.75rem;" onchange="applyFilters()">
+                                <option value="ALL">Semua Kelas (11 Kelas)</option>
+                                <option value="X INT 1">X INT 1</option>
+                                <option value="X INT 2">X INT 2</option>
+                                <option value="X INT 3">X INT 3</option>
+                                <option value="X INT 4">X INT 4</option>
+                                <option value="X REGULER 1">X REGULER 1</option>
+                                <option value="X REGULER 2">X REGULER 2</option>
+                                <option value="X REGULER 3">X REGULER 3</option>
+                                <option value="X REGULER 4">X REGULER 4</option>
+                                <option value="X REGULER 5">X REGULER 5</option>
+                                <option value="X REGULER 6">X REGULER 6</option>
+                                <option value="X REGULER 7">X REGULER 7</option>
+                            </select>
+                        </div>
+
+                        <div style="flex: 1.5; min-width: 220px;">
+                            <label class="form-label" style="font-size: 0.8rem; margin-bottom: 0.2rem;">Cari Siswa:</label>
+                            <input type="text" id="search-student" class="form-control" style="padding: 0.45rem 0.75rem;" placeholder="Ketik nama siswa..." oninput="applyFilters()">
+                        </div>
+                    </div>
+
+                    <!-- Student Table -->
+                    <div class="item-table-wrapper">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 50px; text-align: center;">No</th>
+                                    <th>Nama Siswa</th>
+                                    <th style="width: 110px;">Kelas</th>
+                                    <th style="width: 80px; text-align: center;">Nilai</th>
+                                    <th style="width: 100px; text-align: center;">Benar / 25</th>
+                                    <th style="width: 95px; text-align: center;">Waktu</th>
+                                    <th style="width: 120px; text-align: center;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-student-roster">
+                                <!-- Injected dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
         </div>
-
-        <!-- ==========================================
-             TAB 1: QUESTIONS (25)
-             ========================================== -->
-        <section id="tab-teacher-questions" class="tab-content active">
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">📚 Bank 25 Butir Soal PSTS Bahasa Inggris Kelas X</h2>
-                    <span class="badge-tag badge-easy">Lengkap Kunci Jawaban & Pembahasan</span>
-                </div>
-                <p style="color: var(--slate-600); margin-bottom: 1.5rem; font-size: 0.92rem;">
-                    Berikut adalah daftar lengkap 25 butir soal pilihan ganda (LOTS, MOTS, HOTS) berdasarkan materi teks deskriptif atlet (Susi Susanti, Jonatan Christie, Michael Jordan, Mohamed Salah) serta tata bahasa Simple Present Tense dan Adverbs.
-                </p>
-
-                <div id="teacher-questions-list">
-                    <!-- Dynamic rendering of 25 questions with keys and explanations -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             TAB 2: REFLECTIONS (3 QUESTIONS)
-             ========================================== -->
-        <section id="tab-teacher-reflections" class="tab-content">
-            <!-- Reflection Prompts Overview -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">💭 3 Pertanyaan Refleksi Siswa</h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1rem;">
-                    <div class="reflection-box" style="margin-bottom:0;">
-                        <div class="ref-title">Refleksi 1: Pemahaman Materi & Kosakata</div>
-                        <div class="ref-q">Sejauh mana siswa memahami teks deskriptif atlet berprestasi serta kosakata dan tata bahasa (Simple Present & Adverb)?</div>
-                    </div>
-                    <div class="reflection-box" style="margin-bottom:0;">
-                        <div class="ref-title">Refleksi 2: Kendala Belajar & Strategi HOTS</div>
-                        <div class="ref-q">Bagian mana dari soal atau bacaan yang paling menantang (ide pokok, inferensi, sinonim, grammar) dan bagaimana solusinya?</div>
-                    </div>
-                    <div class="reflection-box" style="margin-bottom:0;">
-                        <div class="ref-title">Refleksi 3: Inspirasi Karakter & Motivasi</div>
-                        <div class="ref-q">Nilai karakter positif apa (disiplin, determinasi/grit, sportivitas, charity) yang paling menginspirasi siswa?</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Student Reflection Answers Feed -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">📝 Rekap Respon Refleksi Siswa (Real-Time Feed)</h2>
-                    <div style="display: flex; gap: 0.5rem; align-items: center;">
-                        <select id="filter-ref-class" class="form-select" style="width: auto; padding: 0.4rem 0.8rem; font-size: 0.88rem;" onchange="renderReflectionsFeed()">
-                            <option value="ALL">Semua Kelas (X INT 1-4 & X REGULER 1-7)</option>
-                            <option value="X INT 1">X INT 1</option>
-                            <option value="X INT 2">X INT 2</option>
-                            <option value="X INT 3">X INT 3</option>
-                            <option value="X INT 4">X INT 4</option>
-                            <option value="X REGULER 1">X REGULER 1</option>
-                            <option value="X REGULER 2">X REGULER 2</option>
-                            <option value="X REGULER 3">X REGULER 3</option>
-                            <option value="X REGULER 4">X REGULER 4</option>
-                            <option value="X REGULER 5">X REGULER 5</option>
-                            <option value="X REGULER 6">X REGULER 6</option>
-                            <option value="X REGULER 7">X REGULER 7</option>
-                        </select>
-                    </div>
-                </div>
-
-                <div id="reflections-feed-container">
-                    <!-- Reflection cards per student -->
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             TAB 3: RESULT / ANALYSIS
-             ========================================== -->
-        <section id="tab-teacher-results" class="tab-content">
-
-            <!-- Summary Stats -->
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-icon stat-blue">👥</div>
-                    <div>
-                        <div class="stat-val" id="stat-total-students">0</div>
-                        <div class="stat-label">Total Siswa Masuk</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon stat-green">🎯</div>
-                    <div>
-                        <div class="stat-val" id="stat-class-avg">0</div>
-                        <div class="stat-label">Rata-Rata Nilai</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon stat-purple">🏆</div>
-                    <div>
-                        <div class="stat-val" id="stat-highest-score">0</div>
-                        <div class="stat-label">Nilai Tertinggi</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon stat-amber">📉</div>
-                    <div>
-                        <div class="stat-val" id="stat-lowest-score">0</div>
-                        <div class="stat-label">Nilai Terendah</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ANALISIS BUTIR SOAL (ITEM ANALYSIS MATRIX) -->
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <h2 class="card-title">📊 Analisis Butir Soal (Item-by-Item Analysis 1–25)</h2>
-                        <p style="font-size: 0.85rem; color: var(--slate-500); margin-top: 0.2rem;">
-                            Monitoring persentase jawaban benar/salah siswa per nomor soal untuk menentukan materi remedial teaching.
-                        </p>
-                    </div>
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <button class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="exportItemAnalysisCSV()">
-                            📥 Ekspor Analisis Butir Soal (CSV)
-                        </button>
-                    </div>
-                </div>
-
-                <div class="item-table-wrapper">
-                    <table class="data-table" id="table-item-analysis">
-                        <thead>
-                            <tr>
-                                <th style="width: 50px; text-align: center;">No</th>
-                                <th>Indikator Kompetensi / Skill</th>
-                                <th style="width: 90px; text-align: center;">Tingkat</th>
-                                <th style="width: 70px; text-align: center;">Kunci</th>
-                                <th style="width: 90px; text-align: center;">Benar (✓)</th>
-                                <th style="width: 90px; text-align: center;">Salah (✗)</th>
-                                <th style="width: 110px; text-align: center;">% Ketuntasan</th>
-                                <th class="bar-cell">Distribusi Ketuntasan</th>
-                                <th style="width: 100px; text-align: center;">Status Soal</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-item-analysis">
-                            <!-- Injected dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- DAFTAR NILAI & ROSTER SISWA -->
-            <div class="card">
-                <div class="card-header">
-                    <h2 class="card-title">📋 Rekapitulasi Nilai Siswa (Student Roster)</h2>
-                    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                        <button class="btn btn-success" style="padding: 0.5rem 1rem; font-size: 0.85rem;" onclick="exportScoresCSV()">
-                            📥 Ekspor Rekap Nilai (CSV)
-                        </button>
-                        <button class="btn btn-outline" style="padding: 0.5rem 0.85rem; font-size: 0.85rem;" onclick="refreshDashboardData()">
-                            🔄 Refresh Data
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Filter & Search Bar -->
-                <div class="filter-bar">
-                    <div style="flex: 1; min-width: 220px;">
-                        <label class="form-label" style="font-size: 0.8rem; margin-bottom: 0.2rem;">Filter Kelas:</label>
-                        <select id="filter-class" class="form-select" style="padding: 0.45rem 0.75rem;" onchange="applyFilters()">
-                            <option value="ALL">Semua Kelas (11 Kelas)</option>
-                            <option value="X INT 1">X INT 1</option>
-                            <option value="X INT 2">X INT 2</option>
-                            <option value="X INT 3">X INT 3</option>
-                            <option value="X INT 4">X INT 4</option>
-                            <option value="X REGULER 1">X REGULER 1</option>
-                            <option value="X REGULER 2">X REGULER 2</option>
-                            <option value="X REGULER 3">X REGULER 3</option>
-                            <option value="X REGULER 4">X REGULER 4</option>
-                            <option value="X REGULER 5">X REGULER 5</option>
-                            <option value="X REGULER 6">X REGULER 6</option>
-                            <option value="X REGULER 7">X REGULER 7</option>
-                        </select>
-                    </div>
-
-                    <div style="flex: 1.5; min-width: 240px;">
-                        <label class="form-label" style="font-size: 0.8rem; margin-bottom: 0.2rem;">Cari Nama Siswa:</label>
-                        <input type="text" id="search-student" class="form-control" style="padding: 0.45rem 0.75rem;" placeholder="Ketik nama siswa..." oninput="applyFilters()">
-                    </div>
-                </div>
-
-                <!-- Student Table -->
-                <div class="item-table-wrapper">
-                    <table class="data-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 50px; text-align: center;">No</th>
-                                <th>Nama Lengkap Siswa</th>
-                                <th style="width: 120px;">Kelas</th>
-                                <th style="width: 90px; text-align: center;">Nilai</th>
-                                <th style="width: 110px; text-align: center;">Benar / Total</th>
-                                <th style="width: 100px; text-align: center;">Waktu</th>
-                                <th style="width: 140px; text-align: center;">Aksi Diagnosa</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tbody-student-roster">
-                            <!-- Injected dynamically -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-        </section>
 
     </div>
 
@@ -303,25 +331,25 @@
     <div id="modal-diagnostics" class="modal-backdrop">
         <div class="modal-content">
             <button class="modal-close" onclick="closeDiagnosticModal()">&times;</button>
-            <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--slate-800); margin-bottom: 0.25rem;" id="diag-student-name">
+            <h2 style="font-size: 1.25rem; font-weight: 800; color: var(--slate-800); margin-bottom: 0.25rem;" id="diag-student-name">
                 Nama Siswa
             </h2>
-            <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 1.25rem;">
-                Kelas: <strong id="diag-student-class">-</strong> • Nilai Akhir: <strong id="diag-student-score" style="color: var(--primary);">-</strong>
+            <p style="font-size: 0.85rem; color: var(--slate-500); margin-bottom: 1.25rem;">
+                Kelas: <strong id="diag-student-class">-</strong> • Nilai: <strong id="diag-student-score" style="color: var(--primary);">-</strong>
             </p>
 
-            <h3 style="font-size: 1rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.75rem;">
-                🔍 Rincian Jawaban Butir Soal (1–25)
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.5rem;">
+                🔍 Rincian Jawaban Soal (1–25)
             </h3>
-            <div class="item-table-wrapper" style="margin-bottom: 1.5rem; max-height: 280px;">
+            <div class="item-table-wrapper" style="margin-bottom: 1.25rem; max-height: 250px;">
                 <table class="data-table" style="font-size: 0.85rem;">
                     <thead>
                         <tr>
-                            <th style="width: 50px; text-align: center;">No</th>
+                            <th style="width: 45px; text-align: center;">No</th>
                             <th>Indikator</th>
-                            <th style="width: 80px; text-align: center;">Jawaban Siswa</th>
-                            <th style="width: 80px; text-align: center;">Kunci Benar</th>
-                            <th style="width: 80px; text-align: center;">Status</th>
+                            <th style="width: 70px; text-align: center;">Jawaban</th>
+                            <th style="width: 70px; text-align: center;">Kunci</th>
+                            <th style="width: 75px; text-align: center;">Hasil</th>
                         </tr>
                     </thead>
                     <tbody id="diag-item-tbody">
@@ -330,7 +358,7 @@
                 </table>
             </div>
 
-            <h3 style="font-size: 1rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.75rem;">
+            <h3 style="font-size: 0.95rem; font-weight: 700; color: var(--slate-800); margin-bottom: 0.5rem;">
                 💭 Respon Refleksi Siswa
             </h3>
             <div id="diag-reflections-container">
@@ -343,8 +371,62 @@
     <script src="data.js"></script>
     <script src="sync.js"></script>
     <script>
+        const CORRECT_PIN = "311099";
         let allSubmissions = [];
         let filteredSubmissions = [];
+
+        // PIN Security Gate Check
+        function checkTeacherAuth() {
+            const isAuth = sessionStorage.getItem("TEACHER_AUTH_TOKEN");
+            if (isAuth === "LOGGED_IN") {
+                document.getElementById('pin-security-overlay').style.display = 'none';
+                document.getElementById('teacher-main-app').style.display = 'block';
+                initTeacherDashboard();
+            } else {
+                document.getElementById('pin-security-overlay').style.display = 'flex';
+                document.getElementById('teacher-main-app').style.display = 'none';
+            }
+        }
+
+        function verifyTeacherPIN(e) {
+            e.preventDefault();
+            const inputPin = document.getElementById('input-teacher-pin').value.trim();
+            const errorMsg = document.getElementById('pin-error-msg');
+
+            if (inputPin === CORRECT_PIN) {
+                sessionStorage.setItem("TEACHER_AUTH_TOKEN", "LOGGED_IN");
+                document.getElementById('pin-security-overlay').style.display = 'none';
+                document.getElementById('teacher-main-app').style.display = 'block';
+                initTeacherDashboard();
+            } else {
+                errorMsg.innerText = "❌ PIN salah! Silakan coba lagi.";
+                document.getElementById('input-teacher-pin').value = '';
+                document.getElementById('input-teacher-pin').focus();
+            }
+        }
+
+        function lockTeacherMode() {
+            sessionStorage.removeItem("TEACHER_AUTH_TOKEN");
+            checkTeacherAuth();
+        }
+
+        function initTeacherDashboard() {
+            renderTeacherQuestions();
+            refreshDashboardData();
+
+            syncEngine.onNewData((newSub) => {
+                refreshDashboardData();
+            });
+
+            syncEngine.subscribeCloudRealtime((updatedList) => {
+                allSubmissions = updatedList;
+                applyFilters();
+            });
+
+            setInterval(() => {
+                refreshDashboardData(true);
+            }, 10000);
+        }
 
         // Tab Switching
         function switchTeacherTab(tab) {
@@ -365,33 +447,14 @@
             }
         }
 
-        // Initialize and load data
-        window.addEventListener('DOMContentLoaded', async () => {
-            renderTeacherQuestions();
-            await refreshDashboardData();
-
-            // Realtime Sync Listener (BroadcastChannel & SSE)
-            syncEngine.onNewData((newSub) => {
-                refreshDashboardData();
-            });
-
-            syncEngine.subscribeCloudRealtime((updatedList) => {
-                allSubmissions = updatedList;
-                applyFilters();
-            });
-
-            // Polling backup every 10 seconds for real-time cloud refresh
-            setInterval(() => {
-                refreshDashboardData(true);
-            }, 10000);
-        });
-
         async function refreshDashboardData(silent = false) {
             if (!silent) {
-                document.getElementById('live-status-text').innerText = "SYNCING...";
+                const el = document.getElementById('live-status-text');
+                if (el) el.innerText = "SYNCING...";
             }
             allSubmissions = await syncEngine.getAllSubmissions();
-            document.getElementById('live-status-text').innerText = "REALTIME LIVE";
+            const el = document.getElementById('live-status-text');
+            if (el) el.innerText = "REALTIME LIVE";
             document.getElementById('teacher-sub-count-badge').innerText = `${allSubmissions.length} Data`;
             applyFilters();
         }
@@ -410,7 +473,6 @@
             renderReflectionsFeed();
         }
 
-        // Render Tab 1: Questions (25)
         function renderTeacherQuestions() {
             const container = document.getElementById('teacher-questions-list');
             container.innerHTML = '';
@@ -426,12 +488,12 @@
                     passageInfo = `<div style="font-size:0.8rem; font-weight:700; color:var(--secondary); margin-bottom:0.5rem;">📖 Wacana: ${PASSAGES[q.passageId].title} (${PASSAGES[q.passageId].category})</div>`;
                 }
 
-                let optionsHtml = '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:0.5rem; margin: 0.75rem 0;">';
+                let optionsHtml = '<div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:0.5rem; margin: 0.75rem 0;">';
                 ['A', 'B', 'C', 'D', 'E'].forEach(opt => {
                     if (q.options[opt]) {
                         const isCorrect = opt === q.correctAnswer;
                         optionsHtml += `
-                            <div class="option-item ${isCorrect ? 'correct-opt' : ''}" style="cursor:default; padding: 0.6rem 0.85rem;">
+                            <div class="option-item ${isCorrect ? 'correct-opt' : ''}" style="cursor:default; padding: 0.55rem 0.8rem;">
                                 <span class="option-key" style="${isCorrect ? 'background: #16a34a; border-color: #16a34a; color: #fff;' : ''}">${opt}</span>
                                 <span class="option-label">${q.options[opt]} ${isCorrect ? '<span class="correct-opt-badge">KUNCI</span>' : ''}</span>
                             </div>
@@ -446,7 +508,7 @@
                         <span class="badge-tag ${q.level === 'HOTS' ? 'badge-hard' : q.level === 'MOTS' ? 'badge-medium' : 'badge-easy'}">${q.level} • ${q.skill}</span>
                     </div>
                     ${passageInfo}
-                    <div style="font-weight: 600; font-size: 1rem; color: var(--slate-800); white-space: pre-line;">${q.question}</div>
+                    <div style="font-weight: 600; font-size: 0.98rem; color: var(--slate-800); white-space: pre-line;">${q.question}</div>
                     ${optionsHtml}
                     <div class="explanation-box">
                         <strong>💡 Pembahasan & Analisis Pedagogi:</strong> ${q.explanation}
@@ -457,7 +519,6 @@
             });
         }
 
-        // Render Tab 2: Reflections Feed
         function renderReflectionsFeed() {
             const container = document.getElementById('reflections-feed-container');
             const refClassFilter = document.getElementById('filter-ref-class') ? document.getElementById('filter-ref-class').value : 'ALL';
@@ -473,7 +534,7 @@
             list.forEach(sub => {
                 const card = document.createElement('div');
                 card.className = 'card';
-                card.style.marginBottom = '1.25rem';
+                card.style.marginBottom = '1rem';
                 card.style.background = 'var(--slate-50)';
 
                 const r1 = sub.reflections && sub.reflections.ref1 ? sub.reflections.ref1 : '<em>(Tidak diisi)</em>';
@@ -481,26 +542,26 @@
                 const r3 = sub.reflections && sub.reflections.ref3 ? sub.reflections.ref3 : '<em>(Tidak diisi)</em>';
 
                 card.innerHTML = `
-                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--slate-200); padding-bottom:0.5rem; margin-bottom:0.75rem;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--slate-200); padding-bottom:0.4rem; margin-bottom:0.6rem;">
                         <div>
-                            <strong style="color:var(--slate-800); font-size:1.05rem;">${sub.name}</strong>
-                            <span class="badge-tag badge-easy" style="margin-left:0.5rem;">${sub.studentClass}</span>
+                            <strong style="color:var(--slate-800); font-size:0.95rem;">${sub.name}</strong>
+                            <span class="badge-tag badge-easy" style="margin-left:0.4rem;">${sub.studentClass}</span>
                         </div>
-                        <span style="font-size:0.78rem; color:var(--slate-500);">${new Date(sub.timestamp).toLocaleString('id-ID')}</span>
+                        <span style="font-size:0.75rem; color:var(--slate-500);">${new Date(sub.timestamp).toLocaleString('id-ID')}</span>
                     </div>
 
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">
-                        <div style="background:#fff; padding:0.85rem; border-radius:8px; border:1px solid var(--slate-200);">
-                            <div style="font-size:0.78rem; font-weight:700; color:var(--primary); margin-bottom:0.35rem;">1. PEMAHAMAN MATERI</div>
-                            <div style="font-size:0.88rem; color:var(--slate-700);">${r1}</div>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:0.75rem;">
+                        <div style="background:#fff; padding:0.75rem; border-radius:8px; border:1px solid var(--slate-200);">
+                            <div style="font-size:0.75rem; font-weight:700; color:var(--primary); margin-bottom:0.25rem;">1. PEMAHAMAN MATERI</div>
+                            <div style="font-size:0.85rem; color:var(--slate-700);">${r1}</div>
                         </div>
-                        <div style="background:#fff; padding:0.85rem; border-radius:8px; border:1px solid var(--slate-200);">
-                            <div style="font-size:0.78rem; font-weight:700; color:var(--accent); margin-bottom:0.35rem;">2. KENDALA & STRATEGI HOTS</div>
-                            <div style="font-size:0.88rem; color:var(--slate-700);">${r2}</div>
+                        <div style="background:#fff; padding:0.75rem; border-radius:8px; border:1px solid var(--slate-200);">
+                            <div style="font-size:0.75rem; font-weight:700; color:var(--accent); margin-bottom:0.25rem;">2. KENDALA & STRATEGI HOTS</div>
+                            <div style="font-size:0.85rem; color:var(--slate-700);">${r2}</div>
                         </div>
-                        <div style="background:#fff; padding:0.85rem; border-radius:8px; border:1px solid var(--slate-200);">
-                            <div style="font-size:0.78rem; font-weight:700; color:var(--secondary); margin-bottom:0.35rem;">3. INSPIRASI NILAI KARAKTER</div>
-                            <div style="font-size:0.88rem; color:var(--slate-700);">${r3}</div>
+                        <div style="background:#fff; padding:0.75rem; border-radius:8px; border:1px solid var(--slate-200);">
+                            <div style="font-size:0.75rem; font-weight:700; color:var(--secondary); margin-bottom:0.25rem;">3. INSPIRASI NILAI KARAKTER</div>
+                            <div style="font-size:0.85rem; color:var(--slate-700);">${r3}</div>
                         </div>
                     </div>
                 `;
@@ -508,9 +569,7 @@
             });
         }
 
-        // Render Tab 3: Results & Item Analysis
         function renderResultsAnalysis() {
-            // Stats Calculations
             const count = filteredSubmissions.length;
             document.getElementById('stat-total-students').innerText = count;
 
@@ -533,10 +592,7 @@
             document.getElementById('stat-highest-score').innerText = highest;
             document.getElementById('stat-lowest-score').innerText = lowest;
 
-            // Render Item Analysis Table
             renderItemAnalysisTable();
-
-            // Render Student Roster Table
             renderStudentRosterTable();
         }
 
@@ -600,14 +656,14 @@
                     <td style="font-weight:700; color:var(--slate-800);">${sub.name}</td>
                     <td><span class="badge-tag badge-easy">${sub.studentClass}</span></td>
                     <td style="text-align:center;">
-                        <span class="badge-tag" style="background:${scoreBg}; color:${scoreColor}; font-size:0.95rem; font-weight:800;">
+                        <span class="badge-tag" style="background:${scoreBg}; color:${scoreColor}; font-size:0.92rem; font-weight:800;">
                             ${sub.score}
                         </span>
                     </td>
                     <td style="text-align:center; font-weight:700;">${sub.correctCount} / 25</td>
-                    <td style="text-align:center; font-size:0.82rem; color:var(--slate-600);">${sub.timeSpent || '-'}</td>
+                    <td style="text-align:center; font-size:0.8rem; color:var(--slate-600);">${sub.timeSpent || '-'}</td>
                     <td style="text-align:center;">
-                        <button class="btn btn-outline" style="padding:0.35rem 0.75rem; font-size:0.8rem;" onclick="openDiagnosticModal('${sub.id}')">
+                        <button class="btn btn-outline" style="padding:0.3rem 0.65rem; font-size:0.78rem;" onclick="openDiagnosticModal('${sub.id}')">
                             🔍 Diagnosa
                         </button>
                     </td>
@@ -616,7 +672,6 @@
             });
         }
 
-        // Diagnostic Modal
         function openDiagnosticModal(subId) {
             const sub = allSubmissions.find(s => s.id === subId);
             if (!sub) return;
@@ -647,24 +702,23 @@
                 itemTbody.appendChild(tr);
             });
 
-            // Diagnostic Reflections
             const refContainer = document.getElementById('diag-reflections-container');
             const r1 = sub.reflections && sub.reflections.ref1 ? sub.reflections.ref1 : '<em>(Tidak ada respon)</em>';
             const r2 = sub.reflections && sub.reflections.ref2 ? sub.reflections.ref2 : '<em>(Tidak ada respon)</em>';
             const r3 = sub.reflections && sub.reflections.ref3 ? sub.reflections.ref3 : '<em>(Tidak ada respon)</em>';
 
             refContainer.innerHTML = `
-                <div style="background:var(--slate-50); border-radius:8px; padding:0.85rem; margin-bottom:0.6rem; border:1px solid var(--slate-200);">
-                    <div style="font-weight:700; font-size:0.82rem; color:var(--primary);">1. Pemahaman Materi & Kosakata:</div>
-                    <div style="font-size:0.88rem; color:var(--slate-700); margin-top:0.25rem;">${r1}</div>
+                <div style="background:var(--slate-50); border-radius:8px; padding:0.75rem; margin-bottom:0.5rem; border:1px solid var(--slate-200);">
+                    <div style="font-weight:700; font-size:0.8rem; color:var(--primary);">1. Pemahaman Materi:</div>
+                    <div style="font-size:0.85rem; color:var(--slate-700); margin-top:0.2rem;">${r1}</div>
                 </div>
-                <div style="background:var(--slate-50); border-radius:8px; padding:0.85rem; margin-bottom:0.6rem; border:1px solid var(--slate-200);">
-                    <div style="font-weight:700; font-size:0.82rem; color:var(--accent);">2. Kendala Belajar & Strategi HOTS:</div>
-                    <div style="font-size:0.88rem; color:var(--slate-700); margin-top:0.25rem;">${r2}</div>
+                <div style="background:var(--slate-50); border-radius:8px; padding:0.75rem; margin-bottom:0.5rem; border:1px solid var(--slate-200);">
+                    <div style="font-weight:700; font-size:0.8rem; color:var(--accent);">2. Kendala HOTS:</div>
+                    <div style="font-size:0.85rem; color:var(--slate-700); margin-top:0.2rem;">${r2}</div>
                 </div>
-                <div style="background:var(--slate-50); border-radius:8px; padding:0.85rem; border:1px solid var(--slate-200);">
-                    <div style="font-weight:700; font-size:0.82rem; color:var(--secondary);">3. Inspirasi Karakter & Motivasi:</div>
-                    <div style="font-size:0.88rem; color:var(--slate-700); margin-top:0.25rem;">${r3}</div>
+                <div style="background:var(--slate-50); border-radius:8px; padding:0.75rem; border:1px solid var(--slate-200);">
+                    <div style="font-weight:700; font-size:0.8rem; color:var(--secondary);">3. Inspirasi Karakter:</div>
+                    <div style="font-size:0.85rem; color:var(--slate-700); margin-top:0.2rem;">${r3}</div>
                 </div>
             `;
 
@@ -675,7 +729,6 @@
             document.getElementById('modal-diagnostics').classList.remove('open');
         }
 
-        // Export to CSV Functions
         function exportScoresCSV() {
             if (filteredSubmissions.length === 0) {
                 alert("Tidak ada data untuk diekspor.");
@@ -751,6 +804,9 @@
             link.click();
             document.body.removeChild(link);
         }
+
+        // Check auth on load
+        window.addEventListener('DOMContentLoaded', checkTeacherAuth);
     </script>
 </body>
 </html>
