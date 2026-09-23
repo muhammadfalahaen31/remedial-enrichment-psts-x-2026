@@ -5,14 +5,15 @@
  * Supports:
  * 1. Cloud Realtime Database (Firebase Realtime DB REST & WebSockets)
  * 2. LocalStorage Persistence
- * 3. Cross-Tab BroadcastChannel Realtime Event Dispatcher
+ * 3. 1-Attempt Enforcement per Student
+ * 4. Cross-Tab BroadcastChannel Realtime Event Dispatcher
  */
 
 const SYNC_CONFIG = {
-    // Cloud Realtime DB endpoint (Pre-configured Public Firebase RTDB for SMA Plus PGRI Cibinong)
     FIREBASE_URL: "https://psts-english-x-2026-default-rtdb.asia-southeast1.firebasedatabase.app",
     COLLECTION: "submissions",
     LOCAL_KEY: "PSTS_ENGLISH_X_SUBMISSIONS",
+    ATTEMPT_KEY: "PSTS_ENGLISH_X_MY_ATTEMPT",
     TIMER_KEY: "PSTS_ENGLISH_X_TIMER_REMAINING",
     EXAM_DURATION_SECONDS: 60 * 60 // 1 Hour (3600 seconds)
 };
@@ -42,12 +43,35 @@ class RealtimeSyncEngine {
 
     notifyListeners(submission) {
         this.listeners.forEach(cb => {
-            try {
-                cb(submission);
-            } catch (err) {
-                console.error("Listener callback error:", err);
-            }
+            try { cb(submission); } catch (err) { console.error(err); }
         });
+    }
+
+    // Check if student has already submitted (1-Attempt Enforcement)
+    async checkExistingAttempt(name, studentClass) {
+        const cleanName = (name || "").toLowerCase().trim();
+        const cleanClass = (studentClass || "").trim();
+
+        // 1. Check local record
+        try {
+            const myAttempt = localStorage.getItem(SYNC_CONFIG.ATTEMPT_KEY);
+            if (myAttempt) {
+                const parsed = JSON.parse(myAttempt);
+                if (parsed && parsed.name && parsed.name.toLowerCase().trim() === cleanName && parsed.studentClass === cleanClass) {
+                    return parsed;
+                }
+            }
+        } catch (e) {}
+
+        // 2. Check full submissions in database
+        const all = await this.getAllSubmissions();
+        const found = all.find(s => (s.name || "").toLowerCase().trim() === cleanName && (s.studentClass || "").trim() === cleanClass);
+        if (found) {
+            localStorage.setItem(SYNC_CONFIG.ATTEMPT_KEY, JSON.stringify(found));
+            return found;
+        }
+
+        return null;
     }
 
     // Get all submissions from LocalStorage & Cloud
@@ -73,7 +97,6 @@ class RealtimeSyncEngine {
                         _cloudId: k
                     }));
 
-                    // Merge cloud with local, deduplicating by id
                     const mergedMap = new Map();
                     localData.forEach(item => mergedMap.set(item.id, item));
                     cloudList.forEach(item => mergedMap.set(item.id, item));
@@ -97,26 +120,27 @@ class RealtimeSyncEngine {
             name: data.name,
             studentClass: data.studentClass,
             studentId: data.studentId || "-",
-            answers: data.answers, // { "1": "B", "2": "C", ... }
-            score: data.score, // 0 - 100
-            correctCount: data.correctCount, // e.g. 23 / 25
-            totalQuestions: data.totalQuestions || 25,
-            itemResults: data.itemResults, // { "1": true, "2": false, ... }
-            reflections: data.reflections, // { "ref1": "...", "ref2": "...", "ref3": "..." }
+            answers: data.answers,
+            score: data.score,
+            correctCount: data.correctCount,
+            totalQuestions: 25,
+            itemResults: data.itemResults,
+            reflections: data.reflections,
             timeSpent: data.timeSpent || "0m",
             timestamp: new Date().toISOString()
         };
 
-        // 1. Save to LocalStorage
+        // 1. Save to LocalStorage & set attempt flag
         try {
             const existing = await this.getAllSubmissions();
             const updated = [payload, ...existing.filter(i => i.id !== payload.id)];
             localStorage.setItem(SYNC_CONFIG.LOCAL_KEY, JSON.stringify(updated));
+            localStorage.setItem(SYNC_CONFIG.ATTEMPT_KEY, JSON.stringify(payload));
         } catch (e) {
             console.warn("Failed saving locally:", e);
         }
 
-        // 2. Broadcast to other tabs (instant realtime for teacher mode on same browser)
+        // 2. Broadcast to other tabs
         if (this.channel) {
             this.channel.postMessage({
                 type: 'NEW_SUBMISSION',
@@ -138,7 +162,7 @@ class RealtimeSyncEngine {
         return payload;
     }
 
-    // Listen to cloud realtime stream via Server-Sent Events (SSE)
+    // Listen to cloud realtime stream
     subscribeCloudRealtime(onDataUpdate) {
         if (typeof EventSource !== 'undefined') {
             try {
