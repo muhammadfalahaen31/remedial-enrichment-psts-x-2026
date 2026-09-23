@@ -69,7 +69,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Main Idea / Topic of Text",
         level: "LOTS",
-        explanation: "Teks mendeskripsikan biografi ringkas, perjalanan karier, dan pencapaian luar biasa Susi Susanti sebagai atlet bulu tangkis kebanggaan Indonesia."
+        explanation: "The text describes Susi Susanti's concise biography, her professional career journey, and outstanding achievements as Indonesia's legendary badminton athlete."
     },
     {
         id: 2,
@@ -85,7 +85,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Specific Detail Retrieval",
         level: "LOTS",
-        explanation: "Paragraf 2 secara eksplisit menyatakan: 'She won a gold medal at the 1992 Olympic Games in Barcelona.'"
+        explanation: "Paragraph 2 explicitly states: 'She won a gold medal at the 1992 Olympic Games in Barcelona.'"
     },
     {
         id: 3,
@@ -101,7 +101,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "D",
         skill: "Detail & Cause-Effect",
         level: "MOTS",
-        explanation: "Paragraf 3 menyatakan: 'Her story teaches us that success needs hard work, discipline, and determination.'"
+        explanation: "Paragraph 3 states: 'Her story teaches us that success needs hard work, discipline, and determination.'"
     },
     {
         id: 4,
@@ -117,7 +117,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Vocabulary in Context (Synonym)",
         level: "MOTS",
-        explanation: "'Retired' berarti pensiun / berhenti dari karier profesional ('stopped working professionally')."
+        explanation: "'Retired' means to withdraw from one's career or professional sports ('stopped working professionally')."
     },
     {
         id: 5,
@@ -133,7 +133,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "A",
         skill: "Vocabulary / Contextual Verb",
         level: "LOTS",
-        explanation: "Tujuan atlet berlatih setiap hari adalah untuk meningkatkan ('improve') performanya."
+        explanation: "The purpose of consistent daily training for an athlete is to enhance or 'improve' performance."
     },
     {
         id: 6,
@@ -149,7 +149,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Critical Thinking / Value Inference",
         level: "HOTS",
-        explanation: "Kualitas esensial untuk meraih tujuan jangka panjang adalah keteguhan hati dan kerja keras konsisten ('Determination and consistent effort')."
+        explanation: "The essential quality for long-term athletic success highlighted throughout the passage is perseverance ('Determination and consistent effort')."
     },
     {
         id: 7,
@@ -165,7 +165,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Author's Purpose / Communicative Purpose",
         level: "MOTS",
-        explanation: "Teks ini bergenre Descriptive Text dengan tujuan mendeskripsikan profil, karakteristik fisik, sikap mental, dan prestasi Jonatan Christie."
+        explanation: "The communicative purpose of this descriptive text is to describe Jonatan Christie's physical traits, mental attitude, and inspiring achievements."
     },
     {
         id: 8,
@@ -181,7 +181,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "A",
         skill: "Vocabulary in Context",
         level: "MOTS",
-        explanation: "'Determination' mengacu pada tekad kuat, yaitu kemampuan untuk tetap fokus dan terus berusaha pantang menyerah ('ability to remain focused and keep trying')."
+        explanation: "'Determination' refers to firmness of purpose and unwavering grit ('the ability to remain focused and keep trying')."
     },
     {
         id: 9,
@@ -197,7 +197,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Reading Inference (HOTS)",
         level: "HOTS",
-        explanation: "Paragraf 3 menyatakan bahwa ia tidak mudah menyerah dan terus berusaha mencari solusi untuk meningkatkan performa saat menghadapi lawan tangguh."
+        explanation: "Paragraph 3 illustrates that he does not give up against difficult opponents; instead, he stays focused to find tactical solutions."
     },
     {
         id: 10,
@@ -213,7 +213,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Author's Tone & Structure Analysis",
         level: "HOTS",
-        explanation: "Penulis menekankan nilai sportivitas dan kerendahan hati untuk menunjukkan bahwa atlet hebat dibentuk oleh perpaduan kemampuan fisik dan karakter mulia."
+        explanation: "The author highlights his humility and sportsmanship to demonstrate that true athletic greatness combines skills with exemplary moral character."
     },
     {
         id: 11,
@@ -229,7 +229,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Part of Speech (Adverb of Frequency/Manner)",
         level: "LOTS",
-        explanation: "Kalimat membutuhkan Adverb (kata keterangan) untuk menerangkan kata kerja 'train'. Bentuk yang tepat adalah 'regularly'."
+        explanation: "An adverb is required to modify the verb 'train'. The correct adverb form is 'regularly'."
     },
     {
         id: 12,
@@ -245,7 +245,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Part of Speech (Adverb of Manner)",
         level: "LOTS",
-        explanation: "Kata yang menerangkan bagaimana Jordan bermain bola basket ('played') adalah Adverb 'skillfully' (dengan terampil)."
+        explanation: "The adverb of manner 'skillfully' correctly describes the action verb 'played'."
     },
     {
         id: 13,
@@ -261,7 +261,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Vocabulary (Character Trait / Grit)",
         level: "MOTS",
-        explanation: "'Grit' bermakna ketabahan, kegigihan, dan tekad pantang mundur dalam menghadapi kesulitan ('the ability to remain determined despite difficulties')."
+        explanation: "'Grit' is defined as courage, resolve, and strength of character ('the ability to remain determined despite difficulties')."
     },
     {
         id: 14,
@@ -277,7 +277,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Pronoun Reference",
         level: "LOTS",
-        explanation: "Kata ganti 'His' merujuk secara langsung kepada subjek teks, yaitu Michael Jordan."
+        explanation: "The possessive pronoun 'His' refers directly to the main subject of the paragraph, Michael Jordan."
     },
     {
         id: 15,
@@ -293,7 +293,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Main Idea Synthesis",
         level: "MOTS",
-        explanation: "Ide pokok mencakup keseluruhan teks: keahlian teknis Jordan, capaian gelar juaranya, determinasi, dan karakter kepemimpinannya yang inspiratif."
+        explanation: "The main idea encompasses his technical talent, career triumphs, sheer determination, and inspirational character."
     },
     {
         id: 16,
@@ -309,7 +309,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "E",
         skill: "Negative Detail Retrieval",
         level: "LOTS",
-        explanation: "Michael Jordan adalah atlet bola basket; ia tidak pernah menjuarai turnamen tenis internasional."
+        explanation: "Michael Jordan was a basketball legend; winning a tennis championship is neither true nor mentioned in the text."
     },
     {
         id: 17,
@@ -325,7 +325,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Reading Detail & Influence",
         level: "MOTS",
-        explanation: "Paragraf 3 menyatakan: 'His competitive attitude encouraged his teammates to work harder and give their best during games.'"
+        explanation: "Paragraph 3 states: 'His competitive attitude encouraged his teammates to work harder and give their best during games.'"
     },
     {
         id: 18,
@@ -341,7 +341,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Factual Information Retrieval",
         level: "LOTS",
-        explanation: "Paragraf 1 menyatakan: 'He was born on June 15, 1992, in Nagrig, a small village in Egypt.'"
+        explanation: "Paragraph 1 clearly states: 'He was born on June 15, 1992, in Nagrig, a small village in Egypt.'"
     },
     {
         id: 19,
@@ -357,7 +357,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "B",
         skill: "Specific Detail",
         level: "LOTS",
-        explanation: "Paragraf 4 menyatakan: 'He gives money to poor families, builds schools, and supports hospitals in Egypt.'"
+        explanation: "Paragraph 4 explicitly notes: 'He gives money to poor families, builds schools, and supports hospitals in Egypt.'"
     },
     {
         id: 20,
@@ -373,7 +373,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "D",
         skill: "Paragraph Main Idea",
         level: "MOTS",
-        explanation: "Paragraf 2 berfokus pada ciri fisik Salah (curly black hair, brown skin, not very tall) dan kemampuan sepak bolanya (speed, quick dribbling, powerful shots)."
+        explanation: "Paragraph 2 focuses on Salah's physical description (curly hair, smile) and signature on-pitch skills (speed, dribbling, shooting)."
     },
     {
         id: 21,
@@ -389,7 +389,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "A",
         skill: "Inference & Contextual Detail",
         level: "MOTS",
-        explanation: "Paragraf 3 menyatakan peran kepemimpinannya membawa Mesir di Piala Afrika dan Piala Dunia (FIFA World Cup), menjadikannya pahlawan bagi jutaan penggemar di Mesir."
+        explanation: "Paragraph 3 notes his pivotal role leading Egypt in the Africa Cup of Nations and playing in the FIFA World Cup."
     },
     {
         id: 22,
@@ -405,7 +405,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "E",
         skill: "Communicative Purpose",
         level: "MOTS",
-        explanation: "Tujuan teks deskriptif ini adalah menggambarkan latar belakang kehidupan, perjalanan karier gemilang, dan kepribadian terpuji Mohamed Salah."
+        explanation: "The purpose of this descriptive text is to describe Mohamed Salah's origins, athletic career, and admirable humble personality."
     },
     {
         id: 23,
@@ -421,7 +421,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "A",
         skill: "Vocabulary in Context (Synonym)",
         level: "LOTS",
-        explanation: "'Famous' bermakna terkenal / dikenal luas, bersinonim dengan 'Popular'."
+        explanation: "'Famous' means widely known and recognized, synonymous with 'Popular'."
     },
     {
         id: 24,
@@ -437,7 +437,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "C",
         skill: "Simple Present Tense (Habitual Action / Subject-Verb Agreement)",
         level: "LOTS",
-        explanation: "Subjek 'I' pada kalimat Simple Present Tense untuk kebiasaan ('twice a week') menggunakan kata kerja bentuk dasar (V1) tanpa akhiran -s, yaitu 'practise'."
+        explanation: "For habitual actions in Simple Present Tense with the first-person subject 'I', the base form of the verb (V1) 'practise' is required."
     },
     {
         id: 25,
@@ -453,7 +453,7 @@ const QUESTIONS_DATA = [
         correctAnswer: "D",
         skill: "Simple Present Tense (Third Person Singular -s/-es)",
         level: "MOTS",
-        explanation: "Subjek 'My father' (He) dan 'He' adalah orang ketiga tunggal. Dalam Simple Present Tense (ditandai dengan 'always' & 'every afternoon'), kata kerja wajib mendapat akhiran -s, sehingga jawabannya adalah 'visits – seems'."
+        explanation: "Both 'My father' and 'He' are third-person singular subjects requiring verbs ending in -s in Simple Present ('visits – seems')."
     }
 ];
 
